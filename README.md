@@ -1,1 +1,1 @@
-# bitcoin-custodial-wallet-fw
+# Bitcoin Wallet Project facilitated by @Forward School
