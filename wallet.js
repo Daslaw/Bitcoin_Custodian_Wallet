@@ -47,7 +47,7 @@ export default class Wallet
         }
     }
     
-    static async recieve(user_label, result) {
+    static async receive(user_label, result) {
         const db = new sqlite3.Database('wallet.db');
     
         /** retrieve wallet info **/

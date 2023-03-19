@@ -21,7 +21,7 @@ export function startView() {
                     value: 'login'
                 },
                 {
-                    key: 'receive',
+                    key: 'signup',
                     'name': 'New User, Click here to sign Up',
                     value: 'signup'
                 },
@@ -104,7 +104,7 @@ function signupView() {
                 var done = this.async();
                 Wallet.found(value, (found) => {
                     if (found) {
-                        done('Username not registered, go back and create a new account')
+                        done('Username already registered, go back and login')
                         return
                     }
 
@@ -217,7 +217,6 @@ function helpView() {
 }
 
 
-
 function dashboardView(user) {
 
     const options = [
@@ -247,23 +246,21 @@ function dashboardView(user) {
             ]
         }
     ]
-
     inquirer
     .prompt(options)
     .then( (answers) => {    
-        console.log(`You want to send crypto.`);
+
         if (answers.wallet == 'send') {
             sendView(user)
         }
         else if (answers.wallet == 'receive') {
-        console.log(`You want to receive crypto.`);
             Wallet.receive(user, (result) => {
                 if (result.error) {
-                    ui.log.write("Could not retrieve crypto wallet address. Crypto Wallet Address may not be found.");
+                    ui.log.write("Could not retrieve wallet address. Address may not be found.");
                     return;
                 }
 
-                ui.log.write(`Enter your crypto wallet address: ${result.row.address}`);
+                ui.log.write(`your payment address: ${result.row.address}`);
                 return;
             })
         }
